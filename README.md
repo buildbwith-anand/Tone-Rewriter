@@ -1,21 +1,21 @@
-# 🎙️ Tone Rewriter (with Voice Input)
+# Tone Rewriter (with Voice Input)
 
-A Python CLI tool that rewrites your text — or spoken words — in any tone you choose.  
-Powered by **Ollama** running locally on your machine. No cloud LLM. No API costs. No data leaving your device.
-
----
-
-## ✨ Features
-
-- 🎤 **Voice input** — speak naturally, it transcribes for you
-- ⌨️ **Type input** — paste or type any text directly
-- 🎭 **7 built-in tones** — Professional, Friendly, Polite, Confident, Concise, Funny, Melancholic
-- 🔒 **100% local LLM** — rewriting runs on your machine via Ollama
-- 🪶 **Lightweight** — single Python file, minimal dependencies
+A Python CLI tool that rewrites your text - or spoken words - in any tone you choose.
+Powered by Ollama running locally on your machine. No cloud LLM. No API costs. No data leaving your device.
 
 ---
 
-## 🖥️ Demo
+## Features
+
+- Voice input - speak naturally, it transcribes for you
+- Type input - paste or type any text directly
+- 7 built-in tones - Professional, Friendly, Polite, Confident, Concise, Funny, Melancholic
+- 100% local LLM - rewriting runs on your machine via Ollama
+- Lightweight - minimal dependencies, clean package structure
+
+---
+
+## Demo
 
 ```
 ====================================================
@@ -42,29 +42,29 @@ Choose a tone:
 Rewriting in a Professional tone...
 
 ----------------------------------------------------
-Unfortunately, I will be unable to attend tomorrow's meeting due to an unforeseen circumstance. 
+Unfortunately, I will be unable to attend tomorrow's meeting due to an unforeseen circumstance.
 I apologize for any inconvenience this may cause.
 ----------------------------------------------------
 ```
 
 ---
 
-## 📦 Requirements
+## Requirements
 
 - Python 3.8+
 - [Ollama](https://ollama.com) installed and running
 - `llama3.2:3b` model pulled
-- Internet connection *(only for speech-to-text via Google's free API)*
+- Internet connection (only for speech-to-text via Google's free API)
 
 ---
 
-## 🚀 Setup & Installation
+## Setup and Installation
 
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/tone-rewriter.git
-cd tone-rewriter
+git clone https://github.com/buildbwith-anand/Tone-Rewriter.git
+cd Tone-Rewriter
 ```
 
 ### 2. Install Python dependencies
@@ -73,14 +73,17 @@ cd tone-rewriter
 pip install -r requirements.txt
 ```
 
-> **On Linux**, you may need to install `portaudio` first:
-> ```bash
-> sudo apt install portaudio19-dev
-> ```
-> **On Mac:**
-> ```bash
-> brew install portaudio
-> ```
+On Linux you may need to install `portaudio` first:
+
+```bash
+sudo apt install portaudio19-dev
+```
+
+On Mac:
+
+```bash
+brew install portaudio
+```
 
 ### 3. Install and start Ollama
 
@@ -90,7 +93,7 @@ Download Ollama from [ollama.com](https://ollama.com), then pull the model:
 ollama pull llama3.2:3b
 ```
 
-Make sure Ollama is running before you launch the script. Either open the Ollama desktop app, or run:
+Make sure Ollama is running before launching. Either open the Ollama desktop app, or run:
 
 ```bash
 ollama serve
@@ -99,12 +102,12 @@ ollama serve
 ### 4. Run it
 
 ```bash
-python tone_rewriter_voice.py
+python main.py
 ```
 
 ---
 
-## 🎭 Available Tones
+## Available Tones
 
 | # | Tone | Description |
 |---|------|-------------|
@@ -118,26 +121,26 @@ python tone_rewriter_voice.py
 
 ---
 
-## 🛠️ How It Works
+## How It Works
 
 ```
 [You speak or type]
-        ↓
-[Google Speech-to-Text API]   ← needs internet (free)
-        ↓
+        |
+[Google Speech-to-Text API]   <- needs internet (free)
+        |
 [Ollama (llama3.2:3b) locally rewrites the tone]
-        ↓
+        |
 [Output shown in terminal]
 ```
 
-The **speech-to-text** step uses Google's free recognition service (internet required).  
-The **tone rewriting** step runs entirely on your machine via Ollama — offline, private, and free.
+The speech-to-text step uses Google's free recognition service (internet required).
+The tone rewriting step runs entirely on your machine via Ollama - offline, private, and free.
 
 ---
 
-## ➕ Adding Custom Tones
+## Adding Custom Tones
 
-Open `tone_rewriter_voice.py` and add a new entry to the `TONES` dictionary:
+Open `tone_rewriter/config.py` and add a new entry to the `TONES` dictionary:
 
 ```python
 TONES = {
@@ -148,9 +151,9 @@ TONES = {
 
 ---
 
-## 🔧 Switching the Model
+## Switching the Model
 
-The default model is `llama3.2:3b`. To use a different Ollama model, change the `MODEL` constant at the top of the file:
+The default model is `llama3.2:3b`. To use a different Ollama model, change the `MODEL` constant in `tone_rewriter/config.py`:
 
 ```python
 MODEL = "llama3.2:3b"   # change this to e.g. "mistral", "gemma3", etc.
@@ -160,20 +163,26 @@ Then pull your chosen model: `ollama pull mistral`
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
-tone-rewriter/
-├── tone_rewriter_voice.py   # main script
-├── requirements.txt         # Python dependencies
-└── README.md                # this file
+Tone-Rewriter/
+├── tone_rewriter/
+│   ├── __init__.py
+│   ├── config.py        # model and tone definitions
+│   ├── voice.py         # microphone input and speech-to-text
+│   └── rewriter.py      # Ollama API call and tone rewriting
+├── main.py              # entry point
+├── requirements.txt
+├── .gitignore
+└── README.md
 ```
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Ideas:
+Contributions are welcome. Ideas:
 - Add more tones
 - Support saving output to a file
 - Add a `--tone` CLI flag to skip the menu
@@ -183,15 +192,15 @@ Feel free to open an issue or submit a PR.
 
 ---
 
-## 📄 License
+## License
 
-MIT License — free to use, modify, and share.
+MIT License - free to use, modify, and share.
 
 ---
 
-## 🙏 Built With
+## Built With
 
-- [Ollama](https://ollama.com) — local LLM runner
-- [SpeechRecognition](https://pypi.org/project/SpeechRecognition/) — voice input
-- [PyAudio](https://pypi.org/project/PyAudio/) — microphone access
-- [Requests](https://pypi.org/project/requests/) — HTTP calls to Ollama
+- [Ollama](https://ollama.com) - local LLM runner
+- [SpeechRecognition](https://pypi.org/project/SpeechRecognition/) - voice input
+- [PyAudio](https://pypi.org/project/PyAudio/) - microphone access
+- [Requests](https://pypi.org/project/requests/) - HTTP calls to Ollama
