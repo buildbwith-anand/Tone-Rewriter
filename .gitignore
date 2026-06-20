@@ -26,3 +26,11 @@ env/
 .env
 *.key
 config.local.py
+
+# Frontend build artifacts
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Generated screenshots
+screenshots/
